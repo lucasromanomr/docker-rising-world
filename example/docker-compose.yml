@@ -8,24 +8,24 @@ services:
     volumes:
       # left side: your docker-host machine
       # right side: the paths in the image (!!do not change!!)
-      - /appdata/rising-world-java/dedicated-server:/appdata/rising-world-java/dedicated-server
+      - /home/servers/rising-world-java/dedicated-server:/appdata/rising-world-java/dedicated-server
     ports:
       - "4254-4259:4254-4259/udp"
       - "4254-4259:4254-4259/tcp"
     environment: 
       - LD_LIBRARY_PATH=/linux64
       - GAME_MEMORY_MB=4096
-    # links:
-    #   - db:database
-  # db:
-  #   image: mariadb
-  #   container_name: rw-java-database
-  #   command: --default-authentication-plugin=mysql_native_password
-  #   restart: unless-stopped
-  #   environment:
-  #     - MYSQL_ROOT_PASSWORD=rwExampleDBPasswordForRoot
-  #     - MYSQL_DATABASE=riwo
-  #     - MYSQL_USER=risingworld
-  #     - MYSQL_PASSWORD=rwExampleDBPasswordForUser
-  #   volumes:
-  #     - /appdata/rising-world-java/mysql/:/var/lib/mysql
+    links:
+      - db:database
+  db:
+    image: mariadb
+    container_name: rw-java-database
+    command: --default-authentication-plugin=mysql_native_password
+    restart: unless-stopped
+    environment:
+      - MYSQL_ROOT_PASSWORD=cptromano
+      - MYSQL_DATABASE=riwo
+      - MYSQL_USER=risingworld
+      - MYSQL_PASSWORD=server-cptromano
+    volumes:
+      - /home/servers/rising-world-java/mysql/:/var/lib/mysql
