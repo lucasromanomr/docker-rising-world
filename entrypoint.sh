@@ -19,6 +19,6 @@ chown -R steam:steam ${GAME_DIR}
 ## END UPDATES ##
 
 cd ${GAME_DIR}
-java -Xmx${GAME_MEMORY_MB}m -Xms$((GAME_MEMORY_MB/2))m -jar server.jar
+./RisingWorldServer.x64
 echo "--------------------------------END-------------------------------"
 sleep 10
